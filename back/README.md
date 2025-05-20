@@ -47,6 +47,7 @@ php artisan serve --host=192.168.x.x --port=8000  # IP locale si besoin
     "email": "alice@example.com",
     "password": "password",
     "password_confirmation": "password"
+    "role": "student" // student | teacher propriete requise mais la fonctionnalitée est pas developpé
 }
 ```
 
