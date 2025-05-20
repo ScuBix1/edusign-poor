@@ -4,7 +4,7 @@ export const checkIn = async (qrData: string, courseId: number) => {
   const token = await AsyncStorage.getItem('token');
 
   const response = await fetch(
-    'http://10.26.134.241:8000/api/attendance/check-in',
+    'http://10.26.135.213:8000/api/attendance/check-in',
     {
       method: 'POST',
       headers: {

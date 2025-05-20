@@ -6,7 +6,7 @@ export const register = async (
   role?: string
 ) => {
   const roleSelected = role === 'teacher' ? 'teacher' : 'student';
-  const response = await fetch('http://10.26.134.241:8000/api/register', {
+  const response = await fetch('http://10.26.135.213:8000/api/register', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

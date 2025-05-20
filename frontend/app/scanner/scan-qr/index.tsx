@@ -27,7 +27,6 @@ export default function Index() {
         qrLock.current = false;
       }
       appState.current = nextAppState;
-      console.log(nextAppState);
     });
 
     return () => {
@@ -70,6 +69,9 @@ export default function Index() {
         style={StyleSheet.absoluteFillObject}
         facing='back'
         onBarcodeScanned={async ({ data }) => {
+          if (qrLock.current) return;
+          qrLock.current = true;
+
           try {
             const parsed = JSON.parse(data);
             const courseId = parsed.course_id;

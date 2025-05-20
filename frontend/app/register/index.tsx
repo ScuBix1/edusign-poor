@@ -24,6 +24,8 @@ export default function Index() {
         confirmationPassword,
         selectedRole
       );
+      await AsyncStorage.removeItem('token');
+      await AsyncStorage.removeItem('user_id');
       await AsyncStorage.setItem('token', result.token);
       await AsyncStorage.setItem('user_id', result.user.id.toString());
       router.replace('/scanner');
