@@ -18,8 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::apiResource('courses', CourseController::class);
-    Route::post('courses/{course}/generate-qr', [CourseController::class, 'generateQrCode']);
-
+    Route::delete('courses/{course}/attendances', [CourseController::class, 'deleteAttendances']);
+    Route::get('courses/{course}/generate-qr', [CourseController::class, 'generateQrCode']);
     Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
     Route::get('courses/{course}/attendance', [AttendanceController::class, 'getCourseAttendance']);
     Route::get('user/attendance', [AttendanceController::class, 'getUserAttendance']);

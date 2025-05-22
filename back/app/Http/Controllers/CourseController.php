@@ -68,6 +68,12 @@ class CourseController extends Controller
         return response()->json(null, 204);
     }
 
+    public function deleteAttendances(Course $course)
+    {
+        $course->attendances()->delete();
+        return response()->json(['message' => 'Toutes les présences ont été supprimées']);
+    }
+
     public function generateQrCode(Course $course)
     {
         $qrData = [

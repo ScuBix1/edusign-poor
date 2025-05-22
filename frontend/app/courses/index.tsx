@@ -1,9 +1,11 @@
 import getAttendances from '@/api/attendances/getAttendances';
 import getCourses from '@/api/courses/getCourses';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
+import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Card, Text, useTheme } from 'react-native-paper';
+import { Button, Card, Text, useTheme } from 'react-native-paper';
 
 const BASE_URL: string = Constants.expoConfig?.extra?.BASE_URL;
 
@@ -34,6 +36,7 @@ export default function CoursesList() {
   const [attendances, setAttendances] = useState<{
     [key: number]: Attendance[];
   }>({});
+  const [userRole, setUserRole] = useState<string | null>(null);
   const theme = useTheme();
 
   const fetchCourses = async () => {
@@ -52,6 +55,7 @@ export default function CoursesList() {
 
   useEffect(() => {
     fetchCourses();
+    AsyncStorage.getItem('user_role').then(setUserRole);
   }, []);
 
   useEffect(() => {
@@ -84,6 +88,20 @@ export default function CoursesList() {
             <Text>Description: {course.description}</Text>
             <Text>Début: {new Date(course.start_time).toLocaleString()}</Text>
             <Text>Fin: {new Date(course.end_time).toLocaleString()}</Text>
+
+            {userRole === 'teacher' && (
+              <Link href={`/courses/edit/${course.id}`} asChild>
+                <Button
+                  style={{
+                    marginTop: 16,
+                    borderWidth: 1,
+                    borderColor: theme.colors.primary,
+                  }}
+                >
+                  Modifier les horaires
+                </Button>
+              </Link>
+            )}
 
             <Text style={{ fontSize: 16, fontWeight: 'bold', marginTop: 16 }}>
               Élèves présents:
