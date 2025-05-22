@@ -73,26 +73,4 @@ class CourseController extends Controller
         $course->attendances()->delete();
         return response()->json(['message' => 'Toutes les présences ont été supprimées']);
     }
-
-    public function generateQrCode(Course $course)
-    {
-        $qrData = [
-            'course_id' => $course->id,
-            'timestamp' => now()->timestamp,
-            'token' => Str::random(32)
-        ];
-
-        $qrCode = QrCode::size(300)
-            ->format('png')
-            ->generate(json_encode($qrData));
-
-        $base64 = base64_encode($qrCode);
-
-        $course->update(['qr_code' => $base64]);
-
-        return Response::make(base64_decode($course->qr_code), 200, [
-            'Content-Type' => 'image/png',
-            'Content-Disposition' => 'inline; filename="qr-code.png"'
-        ]);;
-    }
 }

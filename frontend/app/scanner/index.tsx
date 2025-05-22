@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCameraPermissions } from 'expo-camera';
 import { Link, Stack } from 'expo-router';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
@@ -40,26 +40,11 @@ export default function Index() {
         Scan pour signer
       </Text>
       <View style={{ gap: 20 }}>
-        <Pressable onPress={requestPermission}>
-          <Text
-            style={{
-              color: theme.colors.primary,
-              fontSize: 20,
-              textAlign: 'center',
-              borderWidth: 1,
-              borderColor: theme.colors.primary,
-              borderRadius: 30,
-              paddingHorizontal: 20,
-            }}
-          >
-            Permission Caméra
-          </Text>
-        </Pressable>
-        <Link href={'/scanner/scan-qr'} asChild>
-          <Pressable disabled={!isPermissionGranted}>
-            <Text
-              style={[
-                {
+        {userRole === 'student' && (
+          <React.Fragment>
+            <Pressable onPress={requestPermission}>
+              <Text
+                style={{
                   color: theme.colors.primary,
                   fontSize: 20,
                   textAlign: 'center',
@@ -67,16 +52,35 @@ export default function Index() {
                   borderColor: theme.colors.primary,
                   borderRadius: 30,
                   paddingHorizontal: 20,
-                },
-                { opacity: !isPermissionGranted ? 0.5 : 1 },
-              ]}
-            >
-              Scan Code
-            </Text>
-          </Pressable>
-        </Link>
+                }}
+              >
+                Permission Caméra
+              </Text>
+            </Pressable>
+            <Link href={'/scanner/scan-qr'} asChild>
+              <Pressable disabled={!isPermissionGranted}>
+                <Text
+                  style={[
+                    {
+                      color: theme.colors.primary,
+                      fontSize: 20,
+                      textAlign: 'center',
+                      borderWidth: 1,
+                      borderColor: theme.colors.primary,
+                      borderRadius: 30,
+                      paddingHorizontal: 20,
+                    },
+                    { opacity: !isPermissionGranted ? 0.5 : 1 },
+                  ]}
+                >
+                  Scan Code
+                </Text>
+              </Pressable>
+            </Link>
+          </React.Fragment>
+        )}
         {userRole === 'teacher' && (
-          <>
+          <React.Fragment>
             <Link href='../courses' asChild>
               <Pressable>
                 <Text
@@ -111,7 +115,7 @@ export default function Index() {
                 </Text>
               </Pressable>
             </Link>
-          </>
+          </React.Fragment>
         )}
       </View>
     </SafeAreaView>
