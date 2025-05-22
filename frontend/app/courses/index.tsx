@@ -3,7 +3,7 @@ import getCourses from '@/api/courses/getCourses';
 import Constants from 'expo-constants';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Card, Text } from 'react-native-paper';
+import { Card, Text, useTheme } from 'react-native-paper';
 
 const BASE_URL: string = Constants.expoConfig?.extra?.BASE_URL;
 
@@ -34,6 +34,7 @@ export default function CoursesList() {
   const [attendances, setAttendances] = useState<{
     [key: number]: Attendance[];
   }>({});
+  const theme = useTheme();
 
   const fetchCourses = async () => {
     const result = await getCourses();
@@ -61,7 +62,16 @@ export default function CoursesList() {
 
   return (
     <ScrollView style={{ flex: 1, padding: 16 }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: 'bold',
+          marginBottom: 30,
+          marginTop: 50,
+          textAlign: 'center',
+          color: theme.colors.primary,
+        }}
+      >
         Liste des cours
       </Text>
       {courses.map((course) => (
