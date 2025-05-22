@@ -75,41 +75,43 @@ export default function Index() {
             </Text>
           </Pressable>
         </Link>
-        <Link href='../courses' asChild>
-          <Pressable>
-            <Text
-              style={{
-                color: theme.colors.primary,
-                fontSize: 20,
-                textAlign: 'center',
-                borderWidth: 1,
-                borderColor: theme.colors.primary,
-                borderRadius: 30,
-                paddingHorizontal: 20,
-              }}
-            >
-              Liste des cours
-            </Text>
-          </Pressable>
-        </Link>
         {userRole === 'teacher' && (
-          <Link href='../courses/add' asChild>
-            <Pressable>
-              <Text
-                style={{
-                  color: theme.colors.primary,
-                  fontSize: 20,
-                  textAlign: 'center',
-                  borderWidth: 1,
-                  borderColor: theme.colors.primary,
-                  borderRadius: 30,
-                  paddingHorizontal: 20,
-                }}
-              >
-                Créer un cours
-              </Text>
-            </Pressable>
-          </Link>
+          <>
+            <Link href='../courses' asChild>
+              <Pressable>
+                <Text
+                  style={{
+                    color: theme.colors.primary,
+                    fontSize: 20,
+                    textAlign: 'center',
+                    borderWidth: 1,
+                    borderColor: theme.colors.primary,
+                    borderRadius: 30,
+                    paddingHorizontal: 20,
+                  }}
+                >
+                  Liste des cours
+                </Text>
+              </Pressable>
+            </Link>
+            <Link href='../courses/add' asChild>
+              <Pressable>
+                <Text
+                  style={{
+                    color: theme.colors.primary,
+                    fontSize: 20,
+                    textAlign: 'center',
+                    borderWidth: 1,
+                    borderColor: theme.colors.primary,
+                    borderRadius: 30,
+                    paddingHorizontal: 20,
+                  }}
+                >
+                  Créer un cours
+                </Text>
+              </Pressable>
+            </Link>
+          </>
         )}
       </View>
     </SafeAreaView>

@@ -1,4 +1,4 @@
-import { createCourse } from '@/api/courses';
+import postCourse from '@/api/courses/postCourse';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link, router } from 'expo-router';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ export default function AddCourse() {
         throw new Error('Vous devez être un professeur pour ajouter un cours');
       }
 
-      await createCourse({
+      await postCourse({
         name,
         code,
         description,
@@ -29,9 +29,7 @@ export default function AddCourse() {
       });
 
       router.replace('/courses');
-    } catch (error: any) {
-      console.error('Erreur :', error.message);
-    }
+    } catch {}
   };
 
   return (

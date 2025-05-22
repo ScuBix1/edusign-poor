@@ -9,7 +9,9 @@ export const register = async (
   password_confirmation: string,
   role?: string
 ) => {
-  const roleSelected = role === 'teacher' ? 'teacher' : 'student';
+  const cleanedRole = role?.trim().toLowerCase();
+  const roleSelected = cleanedRole === 'teacher' ? 'teacher' : 'student';
+
   const response = await fetch(`${BASE_URL}/api/register`, {
     method: 'POST',
     headers: {
@@ -26,7 +28,8 @@ export const register = async (
   });
 
   if (!response.ok) {
-    throw new Error('Informations invalide');
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Informations invalides');
   }
 
   const data = response.json();

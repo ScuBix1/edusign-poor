@@ -15,8 +15,10 @@ export default function Index() {
       const result = await login(email, password);
       await AsyncStorage.removeItem('token');
       await AsyncStorage.removeItem('user_id');
+      await AsyncStorage.removeItem('user_role');
       await AsyncStorage.setItem('token', result.token);
       await AsyncStorage.setItem('user_id', result.user.id.toString());
+      await AsyncStorage.setItem('user_role', result.user.role);
       router.replace('/scanner');
     } catch (error: any) {
       console.error('Erreur :', error.message);
