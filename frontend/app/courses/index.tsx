@@ -103,6 +103,21 @@ export default function CoursesList() {
               </Link>
             )}
 
+            {userRole === 'teacher' && (
+              <Link href={`/courses/manual-attendance/${course.id}`} asChild>
+                <Button
+                  style={{
+                    marginTop: 16,
+                    marginLeft: 8,
+                    borderWidth: 1,
+                    borderColor: theme.colors.primary,
+                  }}
+                >
+                  Marquer présence
+                </Button>
+              </Link>
+            )}
+
             <Text style={{ fontSize: 16, fontWeight: 'bold', marginTop: 16 }}>
               Élèves présents:
             </Text>

@@ -76,7 +76,13 @@ export default function EditCourse() {
         {error && (
           <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
         )}
-
+        <Button
+          mode='outlined'
+          onPress={() => router.replace('/courses')}
+          style={{ marginTop: 16 }}
+        >
+          Retour
+        </Button>
         <Button
           style={{ borderWidth: 1, borderColor: theme.colors.primary }}
           onPress={handleUpdateCourse}

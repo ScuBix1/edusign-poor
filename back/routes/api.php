@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
     Route::get('courses/{course}/attendance', [AttendanceController::class, 'getCourseAttendance']);
     Route::get('user/attendance', [AttendanceController::class, 'getUserAttendance']);
+    Route::post('attendance/manual', [AttendanceController::class, 'markAttendanceManually']);
 });
 
 Route::get('/courses/{course}/qr-code', function (Course $course) {

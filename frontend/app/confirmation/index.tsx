@@ -1,8 +1,12 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import { Button } from 'react-native-paper';
 
 export default function Index() {
+  const router = useRouter();
+
   return (
     <SafeAreaView
       style={{
@@ -31,6 +35,13 @@ export default function Index() {
         fallSpeed={3000}
         explosionSpeed={500}
       />
+      <Button
+        mode='outlined'
+        onPress={() => router.replace('/scanner')}
+        style={{ marginTop: 16 }}
+      >
+        Retour
+      </Button>
     </SafeAreaView>
   );
 }
